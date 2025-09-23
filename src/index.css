@@ -1,0 +1,13 @@
+:root {
+    --color-blue: "#247BA0";
+    --color-green: "#70C1B3";
+    --color-yellow: "#FFE066";
+    --color-red: "#F25F5C";
+    --color-gray: "#50514F";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
