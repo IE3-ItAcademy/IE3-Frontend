@@ -1,0 +1,19 @@
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: .5rem;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
+}
+
+.filter-input-container {
+    outline: 1px solid white;
+    display: flex;
+    flex-direction: column;
+}
