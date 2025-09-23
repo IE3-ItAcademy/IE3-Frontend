@@ -11,7 +11,7 @@ export default function Header() {
     return (
         <div className="app-header">
 
-            <img src="logo.png" alt="Alberto versão suricato" />
+            <img src="logo.png" alt="Suriberto"/>
             <div className="header-button-container">
                 {
                     buttons.map((e) => {

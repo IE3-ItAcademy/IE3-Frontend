@@ -1,10 +1,12 @@
+
+
 .app-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100;
     padding: .5rem 0;
-    background-color: #AFAFAF;
+    background-color: #247BA0;
     align-items: center;
 }
 
@@ -22,7 +24,7 @@
 }
 
 .header-button:hover {
-    color: black;
+    color: #FFE066;
     scale: 1.1;
 }
 
