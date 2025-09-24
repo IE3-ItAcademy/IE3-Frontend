@@ -5,10 +5,10 @@ import Projects from './pages/projects/projects'
 function App() {
 
   return (
-    <main>
+    <>
       <Header />
       <Projects />
-    </main>
+    </>
   )
 }
 

@@ -4,4 +4,6 @@ export interface ProjectDTO {
     startDate: string;
     endDate: string;
     description: string;
+    status: string;
+    employees: string[];
 }

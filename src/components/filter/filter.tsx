@@ -48,7 +48,7 @@ export default function Filter({ list, handler }: FilterProps) {
             </div>
 
             <div className="filter-input-container">
-                <label>Nome</label>
+                <label>Data de início</label>
                 <input
                     type="date"
                     placeholder="Data de início"
@@ -58,7 +58,7 @@ export default function Filter({ list, handler }: FilterProps) {
             </div>
 
             <div className="filter-input-container">
-                <label>Nome</label>
+                <label>Data de término</label>
                 <input
                     type="date"
                     placeholder="Data de término"

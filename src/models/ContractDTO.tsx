@@ -3,5 +3,8 @@ export interface ContractDTO {
     name: string;
     startDate: string;
     endDate: string;
-    description: string;
+    status: boolean;
+    wageByHour: number;
+    weeklyHours: string;
+    roles: string[];
 }

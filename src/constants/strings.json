@@ -16,5 +16,11 @@
             "name": "Alocações",
             "link": ""
         }
-    ]
+    ],
+    "projects": {
+        "available": "AVAILABLE",
+        "completed": "COMPLETED",
+        "unavailable": "UNAVAILABLE",
+        "planned": "PLANNED"
+    }
 }
