@@ -4,10 +4,21 @@
     --color-yellow: "#FFE066";
     --color-red: "#F25F5C";
     --color-gray: "#50514F";
+
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 }
+
+#root {
+    height: 100%;
+
+}
+
+html, body {
+    height: 100%;
+}
+

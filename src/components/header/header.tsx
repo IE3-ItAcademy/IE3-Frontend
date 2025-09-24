@@ -11,12 +11,12 @@ export default function Header() {
     return (
         <div className="app-header">
 
-            <img src="logo.png" alt="Suriberto"/>
+            <img className="header-logo" src="logo.png" alt="Suriberto"/>
             <div className="header-button-container">
                 {
-                    buttons.map((e) => {
+                    buttons.map((e, key) => {
                         return (
-                            <a role="button" className="header-button" href={e.link}>{e.name}</a>
+                            <a key={key} role="button" className="header-button" href={e.link}>{e.name}</a>
                         );
                     })
                 }
