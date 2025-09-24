@@ -21,6 +21,7 @@
         "available": "AVAILABLE",
         "completed": "COMPLETED",
         "unavailable": "UNAVAILABLE",
-        "planned": "PLANNED"
+        "planned": "PLANNED",
+        "createProject": "Criar projeto"
     }
 }

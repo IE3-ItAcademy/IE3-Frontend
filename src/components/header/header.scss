@@ -27,13 +27,13 @@
     scale: 1.1;
 }
 
-img {
+.header-logo {
     width: 4rem;
     padding-left: 1rem;
     aspect-ratio: 1/1;
     transition: all 1s ease;
 }
 
-img:hover {
+.header-logo:hover {
     scale: 1.1;
 }
