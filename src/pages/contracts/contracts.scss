@@ -61,29 +61,16 @@
   font-weight: bold;
 }
 
-.completed {
+.active {
   border: 1px solid #0d8c29;
   background-color: #0d8c2930;
   color: #0d8c29;
 }
 
-.notStarted {
-  border: 1px solid #50514f;
-  background-color: #50514f30;
-  color: #50514f;
-}
-
-.invalid {
+.inactive {
   border: 1px solid #f25f5c;
   background-color: #f25f5c30;
   color: #f25f5c;
-}
-
-.inProgress {
-  border: 1px solid #1078a5;
-  background-color: #1078a530;
-  padding: 0.3rem;
-  color: #1078a5;
 }
 
 .create-contract-button {
