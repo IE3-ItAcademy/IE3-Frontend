@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <Header />
-      {/* <Projects /> */}
       <Contracts />
     </>
   );

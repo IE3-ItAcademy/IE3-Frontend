@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import Filter from "../../components/filter/filter";
 import { projects as stringsProjects } from "../../constants/strings.json";
 import type { ContractDTO } from "../../models/ContractDTO";
+import ContractModal from "../../components/contractModal/contractModal";
+import { Modal, Box } from "@mui/material";
 
 export default function Contracts() {
   const [contracts, setContracts] = useState<ContractDTO[]>([]);
   const [filteredContracts, setFilteredContracts] = useState<ContractDTO[]>([]);
-  const [openProjectModal, setOpenProjectModal] = useState(false);
-  const [openNewProjectModal, setNewProjectModal] = useState(false);
+  const [openContractModal, setOpenContractModal] = useState(false);
+  const [openNewContractModal, setNewContractModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [contractId, setContractId] = useState(1);
 
   const contractsPerPage = 6;
   const indexOfLastContract = currentPage * contractsPerPage;
@@ -79,7 +82,8 @@ export default function Contracts() {
                 className="contract"
                 role="button"
                 onClick={() => {
-                  setOpenProjectModal(true);
+                  setOpenContractModal(true);
+                  setContractId(i.id);
                 }}
               >
                 <div className="employee-name">{i.employeeName}</div>
@@ -130,15 +134,19 @@ export default function Contracts() {
         className="create-contract-button"
         role="button"
         onClick={() => {
-          setNewProjectModal(true);
+          setNewContractModal(true);
         }}
       >
         <img src="add_circle.svg" alt="Create new contract button" />
         <p>{stringsProjects.createContract}</p>
       </a>
 
-      {/*openNewProjectModal && @TODO: <Modal></Modal>*/}
-      {/*openProjectModal && @TODO: <Modal></Modal>*/}
+      <Modal
+        open={openContractModal}
+        onClose={() => setOpenContractModal(false)}
+      >
+        <ContractModal id={contractId} />
+      </Modal>
     </div>
   );
 }
