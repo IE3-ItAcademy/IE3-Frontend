@@ -1,6 +1,6 @@
 export interface ContractDTO {
   id: number;
-  employeeName: string;
+  name: string;
   startDate: string;
   endDate: string;
   status: boolean;

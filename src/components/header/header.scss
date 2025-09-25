@@ -1,39 +1,42 @@
+a {
+  text-decoration: none;
+}
 
 .app-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    padding: .5rem 0;
-    background-color: #247BA0;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #247ba0;
+  align-items: center;
 }
 
 .header-button-container {
-    width: 30%;
-    display: flex;
-    justify-content: space-around;
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .header-button {
-    text-decoration: none;
-    color: white;
-    font-size: 1.25rem;
-    transition: all .3s ease;
+  text-decoration: none;
+  color: white;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
 }
 
 .header-button:hover {
-    color: #FFE066;
-    scale: 1.1;
+  color: #ffe066;
+  scale: 1.1;
 }
 
 .header-logo {
-    width: 4rem;
-    padding-left: 1rem;
-    aspect-ratio: 1/1;
-    transition: all 1s ease;
+  width: 4rem;
+  padding-left: 1rem;
+  aspect-ratio: 1/1;
+  transition: all 1s ease;
 }
 
 .header-logo:hover {
-    scale: 1.1;
+  scale: 1.1;
 }

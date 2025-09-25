@@ -4,7 +4,7 @@ import Filter from "../../components/filter/filter";
 import { projects as stringsProjects } from "../../constants/strings.json";
 import type { ContractDTO } from "../../models/ContractDTO";
 import ContractModal from "../../components/contractModal/contractModal";
-import { Modal, Box } from "@mui/material";
+import { Modal } from "@mui/material";
 
 export default function Contracts() {
   const [contracts, setContracts] = useState<ContractDTO[]>([]);
@@ -86,7 +86,7 @@ export default function Contracts() {
                   setContractId(i.id);
                 }}
               >
-                <div className="employee-name">{i.employeeName}</div>
+                <div className="employee-name">{i.name}</div>
                 <div className="contract-status">
                   <div
                     className={`contract ${statusClassMap.get(
