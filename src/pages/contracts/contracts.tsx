@@ -1,4 +1,4 @@
-import "./projects.scss";
+import "./contracts.scss";
 import { useEffect, useState } from "react";
 import Filter from "../../components/filter/filter";
 import { projects as stringsProjects } from "../../constants/strings.json";
@@ -73,12 +73,7 @@ export default function Contracts() {
                   console.log(openProjectModal);
                 }}
               >
-                <div>{i.name}</div>
-                <div className="project-status">
-                  <div className={`status ${statusClassMap[i.status]}`}>
-                    {statusMap[i.status]}
-                  </div>
-                </div>
+                <div>{i.employeeName}</div>
               </a>
             );
           })}
@@ -114,14 +109,14 @@ export default function Contracts() {
         </div>
       </div>
       <a
-        className="create-project-button"
+        className="create-contract-button"
         role="button"
         onClick={() => {
           setNewProjectModal(true);
         }}
       >
-        <img src="add_circle.svg" alt="Create new project button" />
-        <p>{stringsProjects.createProject}</p>
+        <img src="add_circle.svg" alt="Create new contract button" />
+        <p>{stringsProjects.createContract}</p>
       </a>
 
       {/*openNewProjectModal && @TODO: <Modal></Modal>*/}

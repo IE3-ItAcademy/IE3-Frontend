@@ -1,15 +1,16 @@
-import './App.css'
-import Header from './components/header/header'
-import Projects from './pages/projects/projects'
+import "./App.css";
+import Header from "./components/header/header";
+import Contracts from "./pages/contracts/contracts";
+import Projects from "./pages/projects/projects";
 
 function App() {
-
   return (
     <>
       <Header />
-      <Projects />
+      {/* <Projects /> */}
+      <Contracts />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

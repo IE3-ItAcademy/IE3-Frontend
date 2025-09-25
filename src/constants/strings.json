@@ -1,27 +1,28 @@
 {
-    "header": [
-        {
-            "name": "Funcionários",
-            "link": ""
-        },
-        {
-            "name": "Contratos",
-            "link": ""
-        },
-        {
-            "name": "Projetos",
-            "link": ""
-        },
-        {
-            "name": "Alocações",
-            "link": ""
-        }
-    ],
-    "projects": {
-        "available": "AVAILABLE",
-        "completed": "COMPLETED",
-        "unavailable": "UNAVAILABLE",
-        "planned": "PLANNED",
-        "createProject": "Criar projeto"
+  "header": [
+    {
+      "name": "Funcionários",
+      "link": ""
+    },
+    {
+      "name": "Contratos",
+      "link": ""
+    },
+    {
+      "name": "Projetos",
+      "link": ""
+    },
+    {
+      "name": "Alocações",
+      "link": ""
     }
+  ],
+  "projects": {
+    "available": "AVAILABLE",
+    "completed": "COMPLETED",
+    "unavailable": "UNAVAILABLE",
+    "planned": "PLANNED",
+    "createProject": "Criar projeto",
+    "createContract": "Criar contrato"
+  }
 }
