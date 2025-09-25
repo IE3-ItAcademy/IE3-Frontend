@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import Filter from "../../components/filter/filter";
 import { projects as stringsProjects } from "../../constants/strings.json"
+import { Modal } from '@mui/material';
+import ProjectModal from "../../components/projectModal/projectModal";
 
 export default function Projects() {
     const [projects, setProjects] = useState<ProjectDTO[]>([])
@@ -10,6 +12,7 @@ export default function Projects() {
     const [openProjectModal, setOpenProjectModal] = useState(false);
     const [openNewProjectModal, setNewProjectModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [modalId, setModalId] = useState(0)
 
     const projectsPerPage = 6;
     const indexOfLastProject = currentPage * projectsPerPage;
@@ -29,7 +32,7 @@ export default function Projects() {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchProjectsData = async () => {
 
             try {
                 const response = await fetch("http://localhost:8080/api/projects");
@@ -49,21 +52,23 @@ export default function Projects() {
             }
         }
 
-        fetchData()
+        fetchProjectsData()
     }, [])
 
     const statusClassMap: Record<string, string> = {
         [stringsProjects.completed]: "completed",
         [stringsProjects.planned]: "notStarted",
         [stringsProjects.available]: "inProgress",
-        [stringsProjects.unavailable]: "invalid"
+        [stringsProjects.unavailable]: "invalid",
+        [stringsProjects.finished]: "finished"
     }
 
     const statusMap: Record<string, string> = {
         [stringsProjects.completed]: "Concluído",
         [stringsProjects.planned]: "Em espera",
         [stringsProjects.available]: "Em andamento",
-        [stringsProjects.unavailable]: "Inválido"
+        [stringsProjects.unavailable]: "Inválido",
+        [stringsProjects.finished]: "Inconcluído"
     }
 
 
@@ -79,8 +84,8 @@ export default function Projects() {
                         currentProjects.map((i) => {
                             return (
                                 <a key={i.id} className='project' role="button" onClick={() => {
+                                    setModalId(i.id)
                                     setOpenProjectModal(true)
-                                    console.log(openProjectModal)
                                 }}>
                                     <div>
                                         {i.name}
@@ -89,6 +94,7 @@ export default function Projects() {
                                         <div className={`status ${statusClassMap[i.status]}`}>{statusMap[i.status]}</div>
                                     </div>
                                 </a>
+
                             )
                         })
                     }
@@ -123,10 +129,13 @@ export default function Projects() {
                 <p>{stringsProjects.createProject}</p>
             </a>
 
-            
-                {/*openNewProjectModal && @TODO: <Modal></Modal>*/}
-                {/*openProjectModal && @TODO: <Modal></Modal>*/}
-            
+            <Modal
+                open={openProjectModal}
+                onClose={() => setOpenProjectModal(false)}
+            >
+                <ProjectModal id={modalId} />
+            </Modal>
+
         </div>
     );
 }
