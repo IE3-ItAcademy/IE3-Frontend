@@ -61,7 +61,7 @@ export default function ContractModal({ id }: ContractModalProps) {
       {contract && (
         <div className="modal-container">
           <div className="modal-title-container">
-            <p className="modal-project-title">{contract.employeeName}</p>
+            <p className="modal-project-title">{contract.name}</p>
             <p
               className={`modal-status status ${statusClassMap.get(
                 contract.activeContract

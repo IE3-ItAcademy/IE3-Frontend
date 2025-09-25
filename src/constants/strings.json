@@ -2,19 +2,19 @@
   "header": [
     {
       "name": "Funcionários",
-      "link": ""
+      "link": "/employees"
     },
     {
       "name": "Contratos",
-      "link": ""
+      "link": "/contracts"
     },
     {
       "name": "Projetos",
-      "link": ""
+      "link": "/projects"
     },
     {
       "name": "Alocações",
-      "link": ""
+      "link": "/alocations"
     }
   ],
   "projects": {

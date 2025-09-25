@@ -1,14 +1,19 @@
 import "./App.css";
 import Header from "./components/header/header";
-import Contracts from "./pages/contracts/contracts";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Projects from "./pages/projects/projects";
+import Contracts from "./pages/contracts/contracts";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <Contracts />
-    </>
+
+      <Routes>
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contracts" element={<Contracts />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
