@@ -21,15 +21,10 @@ export default function Header() {
       <div className="header-button-container">
         {buttons.map((e, key) => {
           return (
-            <Link to={e.link}>
-              <a
-                key={key}
-                role="button"
-                className="header-button"
-                href={e.link}
-              >
+            <Link key={key} to={e.link}>
+              <span role="button" className="header-button">
                 {e.name}
-              </a>
+              </span>
             </Link>
           );
         })}
