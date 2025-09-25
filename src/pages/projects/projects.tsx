@@ -5,6 +5,7 @@ import Filter from "../../components/filter/filter";
 import { projects as stringsProjects } from "../../constants/strings.json"
 import { Modal } from '@mui/material';
 import ProjectModal from "../../components/projectModal/projectModal";
+import PostProjectModal from "../../components/postProjectModal/postProjectModal";
 
 export default function Projects() {
     const [projects, setProjects] = useState<ProjectDTO[]>([])
@@ -134,6 +135,13 @@ export default function Projects() {
                 onClose={() => setOpenProjectModal(false)}
             >
                 <ProjectModal id={modalId} />
+            </Modal>
+
+            <Modal
+                open={openNewProjectModal}
+                onClose={() => setNewProjectModal(false)}
+            >
+                <PostProjectModal handler={() => {setNewProjectModal(false)}}/>
             </Modal>
 
         </div>
