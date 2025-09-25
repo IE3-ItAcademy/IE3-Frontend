@@ -5,6 +5,7 @@ import { projects as stringsProjects } from "../../constants/strings.json";
 import type { ContractDTO } from "../../models/ContractDTO";
 import ContractModal from "../../components/contractModal/contractModal";
 import { Modal } from "@mui/material";
+import PostContractModal from "../../components/postContractModal/postContractModal";
 
 export default function Contracts() {
   const [contracts, setContracts] = useState<ContractDTO[]>([]);
@@ -146,6 +147,13 @@ export default function Contracts() {
         onClose={() => setOpenContractModal(false)}
       >
         <ContractModal id={contractId} />
+      </Modal>
+
+      <Modal
+        open={openNewContractModal}
+        onClose={() => setNewContractModal(false)}
+      >
+        <PostContractModal handler={() => setNewContractModal(false)} />
       </Modal>
     </div>
   );
