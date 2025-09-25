@@ -99,11 +99,10 @@
     border-radius: 8px;
     scrollbar-width: 1px;
     background-color: white;
-    white-space: nowrap;
-    overflow-x: hidden;
     overflow-y: scroll;
-    text-wrap: nowrap;
-    
+    overflow-x: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
 
 .modal-employees-list .modal-employees:nth-child(odd){

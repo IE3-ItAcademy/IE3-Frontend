@@ -1,5 +1,5 @@
 import "./projectModal.scss"
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import { projects as stringsProjects } from "../../constants/strings.json"
 
@@ -9,14 +9,14 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ id }: ProjectModalProps) {
     const [project, setProject] = useState<ProjectDTO>()
-    const [startDate, setStartDate] = useState<string>("")
-    const [endDate, setEndDate] = useState<string>("")
-
+    const [costPeriod, setCostPeriod] = useState<[string, string]>(["",""])
+    const [clicked, setClicked] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
 
             try {
-                const response = await fetch(`http://localhost:8080/api/projects/modal/${id}?`);
+                const response = await fetch(`http://localhost:8080/api/projects/modal/${id}?startDate=${costPeriod[0]}&endDate=${costPeriod[1]}`);
+                console.log({ response })
 
                 if (!response.ok) {
                     console.error("deu ruim")
@@ -25,15 +25,20 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                 const result = await response.json();
 
                 setProject(result)
-                console.table(result)
+                console.table({ result })
 
             } catch (error: any) {
                 console.error(error.message)
             }
         }
-
         fetchData()
-    }, [])
+
+        if (costPeriod[1] === "" && project) {
+            setCostPeriod(prev => [prev[0], (formatDate(project?.endDate) + "T09:00:00-03:00")])
+        }
+
+    }, [clicked])
+
 
     const statusClassMap: Record<string, string> = {
         [stringsProjects.completed]: "completed",
@@ -51,12 +56,16 @@ export default function ProjectModal({ id }: ProjectModalProps) {
         [stringsProjects.finished]: "Inconcluído"
     }
 
+
     const formatDate = (s: string) => {
         const d = new Date(s);
         return `${d.getDate().toString().padStart(2, '0')} / ${(d.getMonth() + 1).toString().padStart(2, '0')} / ${d.getFullYear()}`;
     };
 
-
+    const formatDateReq = (s: string) => {
+        const d = new Date(s);
+        return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
+    };
 
     return (
         <div className="modal-projects">
@@ -98,17 +107,18 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                                 <input
                                     className="modal-input"
                                     type="date"
-                                    value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
+                                    value={formatDateReq(costPeriod[0])}
+                                    onChange={(e) => setCostPeriod(prev => [(e.target.value + "T09:00:00-03:00"), prev[1]])}
                                 />
                                 <label className="modal-label">Até</label>
                                 <input
                                     className="modal-input"
                                     type="date"
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
+                                    value={formatDateReq(costPeriod[1])}
+                                    onChange={(e) => setCostPeriod(prev => [prev[0], (e.target.value + "T09:00:00-03:00")])}
                                 />
                                 <p className="modal-value">{`SB$ ${project.costs.totalCostPerPeriod}`}</p>
+                                <button onClick={() => setClicked(!clicked)}>Calcular</button>
                             </div>
                         </div>
 
