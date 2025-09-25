@@ -29,7 +29,11 @@
   transition: all 0.3s ease;
 }
 
-.project:hover {
+.contract-status {
+  width: 20%;
+}
+
+.contract:hover {
   scale: 1.01;
 }
 
@@ -123,4 +127,17 @@
 
 .pagination .active {
   color: yellow;
+}
+
+.contract .active,
+.contract .inactive {
+  display: flex;
+  justify-content: center;
+}
+
+.employee-name {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

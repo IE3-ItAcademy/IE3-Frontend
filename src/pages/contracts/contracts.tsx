@@ -19,6 +19,16 @@ export default function Contracts() {
     indexOfLastContract
   );
 
+  const statusMap: Map<boolean, string> = new Map([
+    [true, "Ativo"],
+    [false, "Inativo"],
+  ]);
+
+  const statusClassMap: Map<boolean, string> = new Map([
+    [true, "active"],
+    [false, "inactive"],
+  ]);
+
   const totalPages = Math.ceil(filteredContracts.length / contractsPerPage);
 
   const handlePageChange = (page: number) => {
@@ -66,14 +76,22 @@ export default function Contracts() {
             return (
               <a
                 key={i.id}
-                className="project"
+                className="contract"
                 role="button"
                 onClick={() => {
                   setOpenProjectModal(true);
-                  console.log(openProjectModal);
                 }}
               >
-                <div>{i.employeeName}</div>
+                <div className="employee-name">{i.employeeName}</div>
+                <div className="contract-status">
+                  <div
+                    className={`contract ${statusClassMap.get(
+                      i.activeContract
+                    )}`}
+                  >
+                    <p>{statusMap.get(i.activeContract)}</p>
+                  </div>
+                </div>
               </a>
             );
           })}

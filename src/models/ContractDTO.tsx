@@ -7,4 +7,5 @@ export interface ContractDTO {
   wageByHour: number;
   weeklyHours: string;
   profile: number[];
+  activeContract: boolean;
 }
