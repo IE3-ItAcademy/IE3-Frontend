@@ -5,5 +5,9 @@ export interface ProjectDTO {
     endDate: string;
     description: string;
     status: string;
+    costs: {
+        totalCost: number;
+        totalCostPerPeriod: number;
+    };
     employees: string[];
 }

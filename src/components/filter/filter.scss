@@ -4,14 +4,14 @@
     width: 100%;
 }
 
-input {
+.filter-input {
     padding: .5rem;
     border-radius: 8px;
     border: none;
     box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
 }
 
-label {
+.filter-label {
     color: white;
     margin-bottom: .5rem;
 }

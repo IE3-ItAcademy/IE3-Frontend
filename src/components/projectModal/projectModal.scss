@@ -1,0 +1,120 @@
+.MuiModal-root {
+    align-content: center;
+}
+
+.modal-status {
+    height: fit-content;
+}
+
+.modal-projects {
+    justify-self: center;
+    background-color: white;
+    width: 50%;
+    height: fit-content;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
+}
+
+.modal-title-container {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.modal-project-title {
+    font-size: 1.5rem;
+}
+
+.modal-container {
+    height: 100%;
+    border-radius: 8px;
+    background-color: #247BA030;
+}
+
+.modal-project-body {
+    width: 100%;
+}
+
+.modal-project-description {
+    min-height: 5rem;
+}
+
+.teste1 {
+    background-color: white;
+    margin: .5rem 1rem;
+    padding: .5rem;
+    border-radius: 8px;
+    border: 1px solid #247BA060;
+    height: 5rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.modal-label {
+    margin: 0 1rem;
+}
+
+.modal-section {
+    display: flex;
+
+    margin: 1rem 0;
+}
+
+.modal-value {
+    margin: 0 1rem;
+    background-color: white;
+    border: 1px solid #247BA060;
+    padding: .5rem;
+    width: fit-content;
+    border-radius: 8px;
+}
+
+.modal-period {
+    display: flex;
+    flex-direction: column;
+}
+
+.period-inputs {
+    display: flex;
+    align-items: center;
+}
+
+.modal-input {
+    border: 1px solid #247BA060;
+    border-radius: 8px;
+    padding: .5rem;
+}
+
+.modal-employees-container {
+    padding: 1rem 0;
+}
+
+.modal-employees-list {
+    display: flex;
+    max-height: 10rem;
+    flex-direction: column;
+    margin: 0 1rem;
+    border: 1px solid #247BA060;
+    border-radius: 8px;
+    scrollbar-width: 1px;
+    background-color: white;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-wrap: nowrap;
+    
+}
+
+.modal-employees-list .modal-employees:nth-child(odd){
+    background-color: #247BA015;
+}
+
+.modal-employees {
+    padding: .5rem;
+}
+
+.modal-no-team {
+    padding: .5rem;
+    border-color: red;
+}

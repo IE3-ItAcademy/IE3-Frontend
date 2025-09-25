@@ -38,8 +38,9 @@ export default function Filter({ list, handler }: FilterProps) {
     return (
         <div className="filter-container">
             <div className="filter-input-container">
-                <label>Nome</label>
+                <label className="filter-label">Nome</label>
                 <input
+                    className="filter-input"
                     type="text"
                     placeholder="Digite o nome do projeto"
                     value={name}
@@ -48,8 +49,9 @@ export default function Filter({ list, handler }: FilterProps) {
             </div>
 
             <div className="filter-input-container">
-                <label>Data de início</label>
+                <label className="filter-label">Data de início</label>
                 <input
+                    className="filter-input"
                     type="date"
                     placeholder="Data de início"
                     value={startDate}
@@ -58,8 +60,9 @@ export default function Filter({ list, handler }: FilterProps) {
             </div>
 
             <div className="filter-input-container">
-                <label>Data de término</label>
+                <label className="filter-label">Data de término</label>
                 <input
+                    className="filter-input"
                     type="date"
                     placeholder="Data de término"
                     value={endDate}

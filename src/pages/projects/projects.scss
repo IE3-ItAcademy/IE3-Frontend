@@ -9,7 +9,6 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    overflow: auto;
 }
 
 .projects-container {
@@ -24,7 +23,7 @@
 
 .project-status {
     width: 20%;
-    flex-wrap: nowrap   ;
+    flex-wrap: nowrap;
     text-align: center;
 }
 
@@ -49,7 +48,6 @@
     border-top-left-radius: 8px;
     padding: 1rem;
     background-color: #247BA0;
-
 }
 
 .projects-container-body {
@@ -64,7 +62,7 @@
 
 .status {
     border-radius: 8px;
-    padding: 0.3rem 0;
+    padding: 0.3rem;
     font-weight: bold;
 }
 
@@ -78,6 +76,12 @@
     border: 1px solid #50514F;
     background-color: #50514F30;
     color: #50514F;
+}
+
+.finished {
+    border: 1px solid #f2b35c;
+    background-color: #f2b35c30;
+    color: #f2b35c;
 }
 
 .invalid {
@@ -130,4 +134,11 @@
 
 .pagination .active {
     color: yellow;
+}
+
+.teste {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
