@@ -117,3 +117,21 @@
     padding: .5rem;
     border-color: red;
 }
+
+.period-cost-button {
+    width: 20%;
+    margin: .5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #247BA060;
+    background-color: #247BA020;
+    color: #247BA0;
+    padding: .5rem;
+}
+
+.period-cost-button:active {
+    scale: .9;
+}
+
+.suribertos-modal {
+    margin-left: 1rem;
+}

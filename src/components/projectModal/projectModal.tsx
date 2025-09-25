@@ -9,13 +9,20 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ id }: ProjectModalProps) {
     const [project, setProject] = useState<ProjectDTO>()
-    const [costPeriod, setCostPeriod] = useState<[string, string]>(["",""])
+    const [costPeriod, setCostPeriod] = useState<[string, string]>(["", ""])
     const [clicked, setClicked] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
 
             try {
-                const response = await fetch(`http://localhost:8080/api/projects/modal/${id}?startDate=${costPeriod[0]}&endDate=${costPeriod[1]}`);
+
+
+                const response = await fetch(
+                    (costPeriod[0] != "" && costPeriod[1] != "")
+                        ? `http://localhost:8080/api/projects/modal/${id}?startDate=${costPeriod[0]}&endDate=${costPeriod[1]}`
+                        : `http://localhost:8080/api/projects/modal/${id}`
+                );
+
                 console.log({ response })
 
                 if (!response.ok) {
@@ -33,9 +40,14 @@ export default function ProjectModal({ id }: ProjectModalProps) {
         }
         fetchData()
 
-        if (costPeriod[1] === "" && project) {
-            setCostPeriod(prev => [prev[0], (formatDate(project?.endDate) + "T09:00:00-03:00")])
+        if (costPeriod[0] === "" && project) {
+            setCostPeriod(prev => [formatDateReq(project?.startDate), prev[1]])
         }
+
+        if (costPeriod[1] === "" && project) {
+            setCostPeriod(prev => [prev[0], formatDateReq(project?.endDate)])
+        }
+
 
     }, [clicked])
 
@@ -108,18 +120,23 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                                     className="modal-input"
                                     type="date"
                                     value={formatDateReq(costPeriod[0])}
-                                    onChange={(e) => setCostPeriod(prev => [(e.target.value + "T09:00:00-03:00"), prev[1]])}
+                                    onChange={(e) => setCostPeriod(prev => [formatDateReq(e.target.value), prev[1]])}
                                 />
                                 <label className="modal-label">Até</label>
                                 <input
                                     className="modal-input"
                                     type="date"
                                     value={formatDateReq(costPeriod[1])}
-                                    onChange={(e) => setCostPeriod(prev => [prev[0], (e.target.value + "T09:00:00-03:00")])}
+                                    onChange={(e) => setCostPeriod(prev => [prev[0], formatDateReq(e.target.value)])}
                                 />
+                                <label className="suribertos-modal">SB$</label>
                                 <p className="modal-value">{`SB$ ${project.costs.totalCostPerPeriod}`}</p>
-                                <button onClick={() => setClicked(!clicked)}>Calcular</button>
                             </div>
+                            <button className="period-cost-button"
+                                onClick={() => {
+                                    setClicked(!clicked)
+                                    console.log({ costPeriod })
+                                }}>Calcular</button>
                         </div>
 
                         <div className="modal-employees-container">
