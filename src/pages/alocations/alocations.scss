@@ -19,8 +19,9 @@
 
 .alocation {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
+  justify-content: space-evenly;
   padding: 1rem;
   border-radius: 8px;
   background-color: white;
@@ -125,5 +126,4 @@
 
 .employee-role {
   border-radius: 8px;
-  width: 10%;
 }
