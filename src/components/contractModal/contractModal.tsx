@@ -111,7 +111,7 @@ export default function ContractModal({ id }: ContractModalProps) {
                   ))
                 ) : (
                   <p className="modal-no-team">
-                    O contrato não possui funcionários
+                    O funcionário não possui cargos
                   </p>
                 )}
               </div>

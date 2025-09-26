@@ -1,35 +1,28 @@
+import { useState } from "react";
 import strings from "../../constants/strings.json";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
-  const buttons: any[] = [];
-  strings.header.map((e) => {
-    buttons.push(e);
-  });
-
-  const routeMap: Map<string, string> = new Map([
-    ["Funcionário", "employees"],
-    ["Contratos", "contracts"],
-    ["Alocações", "alocations"],
-    ["Projetos", "projects"],
-  ]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const location = useLocation();
+  const buttons = strings.header;
 
   return (
     <div className="app-header">
       <img className="header-logo" src="logo.png" alt="Suriberto" />
       <div className="header-button-container">
         {buttons.map((e, key) => {
+          const isActive = activeIndex === key || location.pathname === e.link;
+
           return (
-            <Link to={e.link}>
-              <a
-                key={key}
+            <Link key={key} to={e.link} onClick={() => setActiveIndex(key)}>
+              <span
                 role="button"
-                className="header-button"
-                href={e.link}
+                className={`header-button ${isActive ? "current-page" : ""}`}
               >
                 {e.name}
-              </a>
+              </span>
             </Link>
           );
         })}

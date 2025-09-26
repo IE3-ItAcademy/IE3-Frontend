@@ -5,6 +5,7 @@ import { projects as stringsProjects } from "../../constants/strings.json";
 import type { ContractDTO } from "../../models/ContractDTO";
 import ContractModal from "../../components/contractModal/contractModal";
 import { Modal } from "@mui/material";
+import PostContractModal from "../../components/postContractModal/postContractModal";
 
 export default function Contracts() {
   const [contracts, setContracts] = useState<ContractDTO[]>([]);
@@ -45,27 +46,27 @@ export default function Contracts() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/contracts");
-
-        if (!response.ok) {
-          console.error("deu ruim");
-        }
-
-        const result = await response.json();
-
-        console.table(result);
-
-        setContracts(result);
-        setFilteredContracts(result);
-      } catch (error: any) {
-        console.error(error.message);
-      }
-    };
-
-    fetchData();
+    fetchContracts();
   }, []);
+
+  const fetchContracts = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/contracts");
+
+      if (!response.ok) {
+        console.error("deu ruim");
+      }
+
+      const result = await response.json();
+
+      console.table(result);
+
+      setContracts(result);
+      setFilteredContracts(result);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <div className="contracts">
@@ -89,11 +90,11 @@ export default function Contracts() {
                 <div className="employee-name">{i.name}</div>
                 <div className="contract-status">
                   <div
-                    className={`contract ${statusClassMap.get(
+                    className={`contract status ${statusClassMap.get(
                       i.activeContract
                     )}`}
                   >
-                    <p>{statusMap.get(i.activeContract)}</p>
+                    {statusMap.get(i.activeContract)}
                   </div>
                 </div>
               </a>
@@ -146,6 +147,18 @@ export default function Contracts() {
         onClose={() => setOpenContractModal(false)}
       >
         <ContractModal id={contractId} />
+      </Modal>
+
+      <Modal
+        open={openNewContractModal}
+        onClose={() => setNewContractModal(false)}
+      >
+        <PostContractModal
+          handler={() => {
+            setNewContractModal(false);
+            fetchContracts();
+          }}
+        />
       </Modal>
     </div>
   );

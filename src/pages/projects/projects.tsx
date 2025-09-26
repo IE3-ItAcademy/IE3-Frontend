@@ -2,148 +2,163 @@ import "./projects.scss";
 import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import Filter from "../../components/filter/filter";
-import { projects as stringsProjects } from "../../constants/strings.json"
-import { Modal } from '@mui/material';
+import { projects as stringsProjects } from "../../constants/strings.json";
+import { Modal } from "@mui/material";
 import ProjectModal from "../../components/projectModal/projectModal";
 import PostProjectModal from "../../components/postProjectModal/postProjectModal";
 
 export default function Projects() {
-    const [projects, setProjects] = useState<ProjectDTO[]>([])
-    const [filteredProjects, setFilteredProjects] = useState<ProjectDTO[]>([])
-    const [openProjectModal, setOpenProjectModal] = useState(false);
-    const [openNewProjectModal, setNewProjectModal] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [modalId, setModalId] = useState(0)
+  const [projects, setProjects] = useState<ProjectDTO[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<ProjectDTO[]>([]);
+  const [openProjectModal, setOpenProjectModal] = useState(false);
+  const [openNewProjectModal, setNewProjectModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [modalId, setModalId] = useState(0);
 
-    const projectsPerPage = 6;
-    const indexOfLastProject = currentPage * projectsPerPage;
-    const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-    const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
+  const projectsPerPage = 6;
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = filteredProjects.slice(
+    indexOfFirstProject,
+    indexOfLastProject
+  );
 
-    const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
-    const handlePageChange = (page: number) => {
-        if (page >= 1 && page <= totalPages) {
-            setCurrentPage(page);
-        }
-    };
-
-    const filterHandler = (filteredProjects: ProjectDTO[]) => {
-        setFilteredProjects(filteredProjects)
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
     }
+  };
 
-    useEffect(() => {
-        const fetchProjectsData = async () => {
+  const filterHandler = (filteredProjects: ProjectDTO[]) => {
+    setFilteredProjects(filteredProjects);
+  };
 
-            try {
-                const response = await fetch("http://localhost:8080/api/projects");
+  useEffect(() => {
+    fetchProjectsData();
+  }, []);
 
-                if (!response.ok) {
-                    console.error("deu ruim")
-                }
+  const fetchProjectsData = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/projects");
 
-                const result = await response.json();
+      if (!response.ok) {
+        console.error("deu ruim");
+      }
 
-                console.table(result)
+      const result = await response.json();
 
-                setProjects(result)
-                setFilteredProjects(result)
-            } catch (error: any) {
-                console.error(error.message)
-            }
-        }
+      console.table(result);
 
-        fetchProjectsData()
-    }, [])
-
-    const statusClassMap: Record<string, string> = {
-        [stringsProjects.completed]: "completed",
-        [stringsProjects.planned]: "notStarted",
-        [stringsProjects.available]: "inProgress",
-        [stringsProjects.unavailable]: "invalid",
-        [stringsProjects.finished]: "finished"
+      setProjects(result);
+      setFilteredProjects(result);
+    } catch (error: any) {
+      console.error(error.message);
     }
+  };
 
-    const statusMap: Record<string, string> = {
-        [stringsProjects.completed]: "Concluído",
-        [stringsProjects.planned]: "Em espera",
-        [stringsProjects.available]: "Em andamento",
-        [stringsProjects.unavailable]: "Inválido",
-        [stringsProjects.finished]: "Inconcluído"
-    }
+  const statusClassMap: Record<string, string> = {
+    [stringsProjects.completed]: "completed",
+    [stringsProjects.planned]: "notStarted",
+    [stringsProjects.available]: "inProgress",
+    [stringsProjects.unavailable]: "invalid",
+    [stringsProjects.finished]: "finished",
+  };
 
+  const statusMap: Record<string, string> = {
+    [stringsProjects.completed]: "Concluído",
+    [stringsProjects.planned]: "Em espera",
+    [stringsProjects.available]: "Em andamento",
+    [stringsProjects.unavailable]: "Inválido",
+    [stringsProjects.finished]: "Inconcluído",
+  };
 
-    return (
-        <div className="projects">
-            <div className="projects-container">
-                <div className="page-filter-container">
-                    <Filter handler={filterHandler} list={projects} />
-                </div>
-
-                <div className="projects-container-body">
-                    {
-                        currentProjects.map((i) => {
-                            return (
-                                <a key={i.id} className='project' role="button" onClick={() => {
-                                    setModalId(i.id)
-                                    setOpenProjectModal(true)
-                                }}>
-                                    <div>
-                                        {i.name}
-                                    </div>
-                                    <div className="project-status">
-                                        <div className={`status ${statusClassMap[i.status]}`}>{statusMap[i.status]}</div>
-                                    </div>
-                                </a>
-
-                            )
-                        })
-                    }
-
-                    <div className="pagination">
-                        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-                            <img src={"/chevron_left.svg"} />
-                        </button>
-
-                        {[...Array(totalPages)].map((_, index) => {
-                            const pageNum = index + 1;
-                            return (
-                                <button
-                                    key={pageNum}
-                                    onClick={() => handlePageChange(pageNum)}
-                                    className={pageNum === currentPage ? "active" : ""}
-                                >
-                                    {pageNum}
-                                </button>
-                            );
-                        })}
-
-                        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-                            <img src={"/chevron_right.svg"} />
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-            <a className="create-project-button" role="button" onClick={() => { setNewProjectModal(true) }}>
-                <img src="add_circle.svg" alt="Create new project button" />
-                <p>{stringsProjects.createProject}</p>
-            </a>
-
-            <Modal
-                open={openProjectModal}
-                onClose={() => setOpenProjectModal(false)}
-            >
-                <ProjectModal id={modalId} />
-            </Modal>
-
-            <Modal
-                open={openNewProjectModal}
-                onClose={() => setNewProjectModal(false)}
-            >
-                <PostProjectModal handler={() => {setNewProjectModal(false)}}/>
-            </Modal>
-
+  return (
+    <div className="projects">
+      <div className="projects-container">
+        <div className="page-filter-container">
+          <Filter handler={filterHandler} list={projects} />
         </div>
-    );
+
+        <div className="projects-container-body">
+          {currentProjects.map((i) => {
+            return (
+              <a
+                key={i.id}
+                className="project"
+                role="button"
+                onClick={() => {
+                  setModalId(i.id);
+                  setOpenProjectModal(true);
+                }}
+              >
+                <div>{i.name}</div>
+                <div className="project-status">
+                  <div className={`status ${statusClassMap[i.status]}`}>
+                    {statusMap[i.status]}
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+
+          <div className="pagination">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <img src={"/chevron_left.svg"} />
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => {
+              const pageNum = index + 1;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => handlePageChange(pageNum)}
+                  className={pageNum === currentPage ? "active" : ""}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <img src={"/chevron_right.svg"} />
+            </button>
+          </div>
+        </div>
+      </div>
+      <a
+        className="create-project-button"
+        role="button"
+        onClick={() => {
+          setNewProjectModal(true);
+        }}
+      >
+        <img src="add_circle.svg" alt="Create new project button" />
+        <p>{stringsProjects.createProject}</p>
+      </a>
+
+      <Modal open={openProjectModal} onClose={() => setOpenProjectModal(false)}>
+        <ProjectModal id={modalId} />
+      </Modal>
+
+      <Modal
+        open={openNewProjectModal}
+        onClose={() => setNewProjectModal(false)}
+      >
+        <PostProjectModal
+          handler={() => {
+            setNewProjectModal(false);
+            fetchProjectsData();
+          }}
+        />
+      </Modal>
+    </div>
+  );
 }
