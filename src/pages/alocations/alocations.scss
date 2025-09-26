@@ -1,4 +1,4 @@
-.contracts {
+.alocations {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.contracts-container {
+.alocations-container {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -17,9 +17,9 @@
   box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
 }
 
-.contract {
+.alocation {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 1rem;
   border-radius: 8px;
@@ -28,12 +28,12 @@
   transition: all 0.3s ease;
 }
 
-.contract-status {
+.alocation-status {
   width: 20%;
   text-align: center;
 }
 
-.contract:hover {
+.alocation:hover {
   scale: 1.01;
 }
 
@@ -45,7 +45,7 @@
   background-color: #247ba0;
 }
 
-.contracts-container-body {
+.alocations-container-body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -73,7 +73,7 @@
   color: #f25f5c;
 }
 
-.create-contract-button {
+.create-alocation-button {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
@@ -90,7 +90,7 @@
   font-weight: 600;
 }
 
-.create-contract-button:hover {
+.create-alocation-button:hover {
   scale: 1.01;
   cursor: pointer;
 }
@@ -114,12 +114,6 @@
 
 .pagination .active {
   color: yellow;
-}
-
-.contract .active,
-.contract .inactive {
-  display: flex;
-  justify-content: center;
 }
 
 .employee-name {

@@ -22,12 +22,13 @@
     "completed": "COMPLETED",
     "unavailable": "UNAVAILABLE",
     "planned": "PLANNED",
-        "finished": "FINISHED",
+    "finished": "FINISHED",
     "createProject": "Criar projeto",
     "createContract": "Criar contrato",
     "manager": "MANAGER",
     "dev": "DEV",
     "qa": "QA",
-    "security": "SECURITY"
+    "security": "SECURITY",
+    "createAlocation": "Criar alocação"
   }
 }
