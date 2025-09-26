@@ -75,33 +75,33 @@ export default function ContractModal({ id }: ContractModalProps) {
             <div className="modal-section">
               <div className="modal-input-row">
                 <div className="input-container">
-                  <label className="modal-label">Início</label>
+                  <label className="modal-label">Início:</label>
                   <p className="modal-value">
                     {formatDate(contract.startDate)}
                   </p>
                 </div>
 
                 <div className="input-container">
-                  <label className="modal-label">Término</label>
+                  <label className="modal-label">Término:</label>
                   <p className="modal-value">{formatDate(contract.endDate)}</p>
                 </div>
               </div>
 
               <div className="modal-input-row">
                 <div className="input-container">
-                  <label className="modal-label">Salário por hora</label>
+                  <label className="modal-label">Salário por hora:</label>
                   <p className="modal-value">{`SB$ ${contract.wageByHour}`}</p>
                 </div>
 
                 <div className="input-container">
-                  <label className="modal-label">Horas por semana</label>
+                  <label className="modal-label">Horas por semana:</label>
                   <p className="modal-value">{contract.weeklyHours}</p>
                 </div>
               </div>
             </div>
 
             <div className="modal-employees-container">
-              <label className="modal-label">Cargos</label>
+              <label className="modal-label">Cargos:</label>
               <div className="modal-employees-list">
                 {contract.profile.length > 0 ? (
                   contract.profile.map((c, index) => (
