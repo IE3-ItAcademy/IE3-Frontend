@@ -22,8 +22,9 @@
     "completed": "COMPLETED",
     "unavailable": "UNAVAILABLE",
     "planned": "PLANNED",
-        "finished": "FINISHED",
+    "finished": "FINISHED",
     "createProject": "Criar projeto",
-    "createContract": "Criar contrato"
+    "createContract": "Criar contrato",
+    "createAlocation": "Criar alocação"
   }
 }

@@ -1,0 +1,23 @@
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filter-input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
+}
+
+.filter-label {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.filter-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
