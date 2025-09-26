@@ -6,7 +6,11 @@ import type { AlocationDTO } from "../../models/AlocationDTO";
 import NameFilter from "../../components/nameFilter/nameFilter";
 import AlocationModal from "../../components/alocationModal/alocationModal";
 import PostAlocationModal from "../../components/postAlocationModal/postAlocationModal";
-import { roleClassMap, roleMap } from "../../constants/roleMap";
+import {
+  roleClassMap,
+  roleMap,
+  roleMapTranslation,
+} from "../../constants/roleMap";
 
 export default function Alocations() {
   const [alocations, setAlocations] = useState<AlocationDTO[]>([]);
@@ -25,8 +29,6 @@ export default function Alocations() {
     indexOfFirstContract,
     indexOfLastAlocation
   );
-
-
 
   const totalPages = Math.ceil(filteredAlocations.length / alocationsPerPage);
 
@@ -82,16 +84,19 @@ export default function Alocations() {
                   setAlocationId(i.id);
                 }}
               >
-
-                  <div className="employee-name">
-                    <p>{i.employeeName}</p>
-                  </div>
-                  <div className={`employee-name employee-role role ${roleClassMap[i.employeeRole]}`}>
-                    <p>{roleMap[i.employeeRole]}</p>
-                  </div>
-                  <div className="employee-name">
-                    <p>{i.projectName}</p>
-                  </div>
+                <div className="employee-name">
+                  <p>{i.employeeName}</p>
+                </div>
+                <div
+                  className={`employee-name employee-role role ${
+                    roleClassMap[i.employeeRole]
+                  }`}
+                >
+                  <p>{roleMapTranslation[i.employeeRole]}</p>
+                </div>
+                <div className="employee-name employee-project">
+                  <p>{i.projectName}</p>
+                </div>
               </a>
             );
           })}

@@ -13,11 +13,11 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contracts" element={<Contracts />} />
         <Route path="/alocations" element={<Alocations />} />
-        <Route path="/employees" element={<Employees/>}/>
+        <Route path="/employees" element={<Employees />} />
       </Routes>
     </BrowserRouter>
   );

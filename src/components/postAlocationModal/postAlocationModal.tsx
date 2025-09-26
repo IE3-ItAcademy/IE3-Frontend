@@ -10,9 +10,10 @@ interface PostModalProps {
 
 export default function PostAlocationModal({ handler }: PostModalProps) {
   const employeeId = useRef(0);
-  const projectId = useRef(0);
+  /* const projectId = useRef(0); */
   const profile = useRef("");
 
+  const [projectId, setProjectId] = useState(0);
   const [employees, setEmployees] = useState<EmployeesDTO[]>([]);
   const [projects, setProjects] = useState<ProjectDTO[]>([]);
   const [weeklyHours, setWeeklyHours] = useState(0);
@@ -34,10 +35,10 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
 
   // carregar funcionários sempre que projeto ou horas mudarem
   useEffect(() => {
-    if (projectId.current !== 0 && weeklyHours > 0) {
+    if (projectId !== 0 && weeklyHours > 0) {
       getEmployees();
     }
-  }, [weeklyHours, projects]);
+  }, [weeklyHours, projects, projectId]);
 
   const getProjects = async () => {
     try {
@@ -55,7 +56,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
   const getEmployees = async () => {
     try {
       const response = await fetch(
-        `${baseUrl}/employees/getEmployeesWithWeeklyHoursForProject/${projectId.current}?weeklyHours=${weeklyHours}`
+        `${baseUrl}/employees/getEmployeesWithWeeklyHoursForProject/${projectId}?weeklyHours=${weeklyHours}`
       );
       if (!response.ok) throw new Error("Erro ao buscar funcionários");
       const result = await response.json();
@@ -66,7 +67,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
   };
 
   const validateInput = () => {
-    if (!projectId.current || projectId.current <= 0) {
+    if (!projectId || projectId <= 0) {
       console.error("Projeto não selecionado.");
       return false;
     }
@@ -99,7 +100,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
     const url = `${baseUrl}/alocations`;
     const body: PostAlocationDTO = {
       employee: employeeId.current,
-      project: projectId.current,
+      project: projectId,
       weeklyHours: weeklyHours,
       employeeRole: profile.current,
     };
@@ -129,7 +130,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
     console.log("Erro ao preencher formulário");
   };
 
-  const enableEmployeeInput = projectId.current !== 0 && weeklyHours > 0;
+  const enableEmployeeInput = projectId !== 0 && weeklyHours > 0;
 
   return (
     <div className="post-modal">
@@ -139,7 +140,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
           <select
             className="post-date-input"
             onChange={(e) => {
-              projectId.current = Number(e.target.value);
+              setProjectId(Number(e.target.value));
             }}
           >
             <option value="">Selecione...</option>
@@ -203,7 +204,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
             validateInput() ? handlePost() : handleError();
           }}
         >
-          Submit
+          Enviar
         </button>
       </div>
     </div>

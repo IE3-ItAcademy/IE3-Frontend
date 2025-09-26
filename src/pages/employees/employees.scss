@@ -1,4 +1,4 @@
-.alocations {
+.contracts {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.alocations-container {
+.contracts-container {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -17,11 +17,10 @@
   box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
 }
 
-.alocation {
+.contract {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
   padding: 1rem;
   border-radius: 8px;
   background-color: white;
@@ -29,12 +28,12 @@
   transition: all 0.3s ease;
 }
 
-.alocation-status {
+.contract-status {
   width: 20%;
   text-align: center;
 }
 
-.alocation:hover {
+.contract:hover {
   scale: 1.01;
 }
 
@@ -46,7 +45,7 @@
   background-color: #247ba0;
 }
 
-.alocations-container-body {
+.contracts-container-body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -74,7 +73,7 @@
   color: #f25f5c;
 }
 
-.create-alocation-button {
+.create-contract-button {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
@@ -91,7 +90,7 @@
   font-weight: 600;
 }
 
-.create-alocation-button:hover {
+.create-contract-button:hover {
   scale: 1.01;
   cursor: pointer;
 }
@@ -117,15 +116,15 @@
   color: yellow;
 }
 
+.contract .active,
+.contract .inactive {
+  display: flex;
+  justify-content: center;
+}
+
 .employee-name {
-  width: 33%;
+  width: 50%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.employee-role {
-  border-radius: 8px;
-  width: 10%;
-  box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
 }
