@@ -101,7 +101,7 @@ export default function EmployeeModal({ id }: EmployeeModalProps) {
                   ))
                 ) : (
                   <p className="modal-no-team">
-                    O funcionário não possui cargos
+                    O funcionário não possui projetos
                   </p>
                 )}
               </div>
