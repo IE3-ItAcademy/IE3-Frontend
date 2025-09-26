@@ -1,0 +1,272 @@
+body {
+    background-color: rgb(211, 230, 237);
+}
+
+.container{
+    margin-top: 0px;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.box-funcionarios{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    width: 683px;
+    height: 600px;
+    background-color: rgb(153, 190, 209);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 683px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-color: rgb(35, 123, 161);
+}
+
+.search-bar{
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.30);
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 633px;
+    height: 40px;
+    padding-right: 40px;
+    padding-left: 20px; 
+    box-sizing: border-box;
+    font-size: 16px;
+    border-radius: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 20px;
+}
+
+ul{
+    width: 100%;
+}
+
+.item-funcionario{
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.30);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 633px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.nome-funcionario{
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+    white-space: nowrap;
+}
+
+.container-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.profile-button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.profile-button:hover{
+    scale: 1.1;
+}
+
+.modal-overlay {
+    width: 700px;
+    height: 720px;
+    background-color: rgb(153, 190, 209);
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    border-radius: 16px;
+}
+
+.close-button{
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.30);
+    background-color: rgb(252, 114, 114);
+    width: 50px;
+    border: 0;
+    position: absolute;
+    right: 10px;
+    bottom: 13px;
+    cursor: pointer;
+    padding: 3px 0px 3px 0px;
+}
+
+.employee-card{
+    margin-top: 0px;
+    border: 1px solid rgb(39, 122, 161);
+    background-color: rgb(39, 122, 161);
+    width: auto;
+    height: 70px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    
+}
+
+.projs{
+    margin-top: 20px;
+}
+
+.h2-modal-profile{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nome-funcionario-modal{
+    margin-left: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; 
+}
+
+.funcionario-nome{
+    margin-top: 5px;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+    white-space: nowrap;
+    margin-left: 40px;
+}
+
+.funcionario-status{
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+.h3-modal-profile{
+    margin-left: 40px;
+}
+
+.profile-modal-content{
+    padding-top: 10px;
+    background-color: rgb(153, 190, 209);
+    height: 100%;
+}
+
+
+.ul-modal-profile{
+    margin-left: 40px;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 87%;
+    overflow: scroll;
+    height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #1078a5 #99bed1;
+    border-bottom-right-radius: 16px;
+}
+
+.lista-funcionarios{
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #1078a5 #99bed1;
+    border-bottom-right-radius: 16px;
+}
+
+.ul-modal-profile li{
+    padding-left: 15px;
+    border-radius: 8px;
+    background-color: white;
+    margin-top: 20px;
+    justify-content: space-between;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.30);
+}
+
+
+.status-txt{
+    position: absolute;
+    right: 100px;
+    padding: 2px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.contratos{
+    border: 1px solid red;
+}
+
+.create-button-container {
+    right: 30px;
+    bottom: 10px;
+    position: fixed;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* border: 1px solid purple; */
+}
+
+.create-button{
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    color: #1078a5;
+    padding: 0.5rem;
+    box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    font-size: 18px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.create-button:hover{
+    scale: 1.01;
+}
+
+.create-icon{
+    /* border: 1px solid purple; */
+    margin-right: 13px;
+    /* padding-top: 10px; */
+}
+
