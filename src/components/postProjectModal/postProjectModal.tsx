@@ -49,6 +49,9 @@ export default function PostProjectModal({handler}: PostModalProps) {
         console.log("AEEEEE")
     }
 
+    const now = new Date();
+    console.log(now)
+
     const validateInput = () => {
         if (startDate.current >= endDate.current) {
             console.error("Data início >= data término");
