@@ -183,14 +183,14 @@
     gap: .5rem;
 }
 
-.employee-container {
+.project-employee-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 .5rem;
 }
 
-.modal-employees-container .employee-container:nth-child(odd) {
+.modal-project-employees-container .project-employee-container:nth-child(odd) {
     background-color: #247ba015;
 }
 
@@ -200,7 +200,7 @@
 }
 
 .manager {
-    padding: .5rem;
+    padding: 0.3rem;
     border: 1px solid #f2b35c;
     background-color: #f2b35c30;
     color: #f2b35c;
@@ -209,12 +209,14 @@
 .security {
     border: 1px solid #f25f5c;
     background-color: #f25f5c30;
+    padding: 0.3rem;
     color: #f25f5c;
 }
 
 .qa {
     border: 1px solid #0d8c29;
     background-color: #0d8c2930;
+    padding: 0.3rem;
     color: #0d8c29;
 }
 
