@@ -101,7 +101,7 @@ export default function Home() {
 
     return (
         <div className="home-container">
-            <div className="column">
+            <div className="column-left">
                 <div className="home-graph-container">
                     <div>
                         <label className="home-title">Estatísticas</label>
@@ -135,7 +135,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className="column">
+            <div className="column-right">
                 <div className="home-employees-container">
                     <label className="home-title">Funcionários</label>
                     <div className="home-employees-list">
@@ -150,6 +150,8 @@ export default function Home() {
                         }
                     </div>
                 </div>
+
+                <div className="suriberto-home"/>
             </div>
         </div>
     );
