@@ -2,8 +2,9 @@ import "./projects.scss";
 import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import Filter from "../../components/filter/filter";
-import { projects as stringsProjects } from "../../constants/strings.json";
-import { Modal } from "@mui/material";
+import { statusClassMap, statusMap } from "../../constants/statusMap";
+import { projects as stringsProjects } from "../../constants/strings.json"
+import { Modal } from '@mui/material';
 import ProjectModal from "../../components/projectModal/projectModal";
 import PostProjectModal from "../../components/postProjectModal/postProjectModal";
 
@@ -35,44 +36,31 @@ export default function Projects() {
     setFilteredProjects(filteredProjects);
   };
 
-  useEffect(() => {
-    fetchProjectsData();
-  }, []);
+    const fetchProjectsData = async () => {
 
-  const fetchProjectsData = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/projects");
+        try {
+            const response = await fetch("http://localhost:8080/api/projects");
 
-      if (!response.ok) {
-        console.error("deu ruim");
-      }
+            if (!response.ok) {
+                console.error("deu ruim")
+            }
 
-      const result = await response.json();
+            const result = await response.json();
 
-      console.table(result);
+            console.table(result)
 
-      setProjects(result);
-      setFilteredProjects(result);
-    } catch (error: any) {
-      console.error(error.message);
+            setProjects(result)
+            setFilteredProjects(result)
+        } catch (error: any) {
+            console.error(error.message)
+        }
     }
-  };
 
-  const statusClassMap: Record<string, string> = {
-    [stringsProjects.completed]: "completed",
-    [stringsProjects.planned]: "notStarted",
-    [stringsProjects.available]: "inProgress",
-    [stringsProjects.unavailable]: "invalid",
-    [stringsProjects.finished]: "finished",
-  };
+    useEffect(() => {
+        fetchProjectsData()
+    }, [])
 
-  const statusMap: Record<string, string> = {
-    [stringsProjects.completed]: "Concluído",
-    [stringsProjects.planned]: "Em espera",
-    [stringsProjects.available]: "Em andamento",
-    [stringsProjects.unavailable]: "Inválido",
-    [stringsProjects.finished]: "Inconcluído",
-  };
+
 
   return (
     <div className="projects">
@@ -148,17 +136,16 @@ export default function Projects() {
         <ProjectModal id={modalId} />
       </Modal>
 
-      <Modal
-        open={openNewProjectModal}
-        onClose={() => setNewProjectModal(false)}
-      >
-        <PostProjectModal
-          handler={() => {
-            setNewProjectModal(false);
-            fetchProjectsData();
-          }}
-        />
-      </Modal>
-    </div>
-  );
+            <Modal
+                open={openNewProjectModal}
+                onClose={() => setNewProjectModal(false)}
+            >
+                <PostProjectModal handler={() => {
+                    setNewProjectModal(false)
+                    fetchProjectsData()
+                }} />
+            </Modal>
+
+        </div>
+    );
 }

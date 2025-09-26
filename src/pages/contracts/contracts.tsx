@@ -90,7 +90,7 @@ export default function Contracts() {
                 <div className="employee-name">{i.name}</div>
                 <div className="contract-status">
                   <div
-                    className={`contract status ${statusClassMap.get(
+                    className={`status contract ${statusClassMap.get(
                       i.activeContract
                     )}`}
                   >

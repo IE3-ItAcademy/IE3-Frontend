@@ -1,7 +1,9 @@
 import "./projectModal.scss"
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import { projects as stringsProjects } from "../../constants/strings.json"
+import { roleClassMap, roleMap} from "../../constants/roleMap";
+
 
 interface ProjectModalProps {
     id: number;
@@ -32,8 +34,6 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                 const result = await response.json();
 
                 setProject(result)
-                console.table({ result })
-
             } catch (error: any) {
                 console.error(error.message)
             }
@@ -89,65 +89,90 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                     </div>
 
                     <main className="modal-project-body">
-                        <label className="modal-label">Descrição do Projeto:</label>
-                        <div className="teste1">
-                            <text className="modal-project-description">{project.description}</text>
-                        </div>
-
-                        <div className="modal-section">
-                            <div>
+                        <div className="modal-date-section">
+                            <div className="date-container">
                                 <label className="modal-label">Início</label>
                                 <p className="modal-value">{formatDate(project.startDate)}</p>
                             </div>
 
-                            <div>
+                            <div className="date-container">
                                 <label className="modal-label">Término</label>
                                 <p className="modal-value">{formatDate(project.endDate)}</p>
                             </div>
                         </div>
 
-                        <div className="modal-section">
-                            <div>
-                                <label className="modal-label">Custo Total</label>
-                                <p className="modal-value">{`SB$ ${project.costs.totalCost}`}</p>
-                            </div>
+                        <label className="modal-label">Descrição do Projeto:</label>
+                        <div className="teste1">
+                            <text className="modal-project-description">{project.description}</text>
                         </div>
-                        <div className="modal-period">
-                            <label className="modal-label">Custo período</label>
-                            <div className="period-inputs">
-                                <label className="modal-label">De</label>
-                                <input
-                                    className="modal-input"
-                                    type="date"
-                                    value={formatDateReq(costPeriod[0])}
-                                    onChange={(e) => setCostPeriod(prev => [formatDateReq(e.target.value), prev[1]])}
-                                />
-                                <label className="modal-label">Até</label>
-                                <input
-                                    className="modal-input"
-                                    type="date"
-                                    value={formatDateReq(costPeriod[1])}
-                                    onChange={(e) => setCostPeriod(prev => [prev[0], formatDateReq(e.target.value)])}
-                                />
-                                <label className="suribertos-modal">SB$</label>
-                                <p className="modal-value">{`SB$ ${project.costs.totalCostPerPeriod}`}</p>
+
+                        <div className="modal-costs-section">
+
+                            <div className="modal-period">
+                                <label className="modal-label">Período</label>
+                                <div className="period-inputs">
+                                    <label className="modal-label">De</label>
+                                    <input
+                                        className="modal-input"
+                                        type="date"
+                                        value={formatDateReq(costPeriod[0])}
+                                        onChange={(e) => setCostPeriod(prev => [formatDateReq(e.target.value), prev[1]])}
+                                    />
+                                    <label className="modal-label">Até</label>
+                                    <input
+                                        className="modal-input"
+                                        type="date"
+                                        value={formatDateReq(costPeriod[1])}
+                                        onChange={(e) => setCostPeriod(prev => [prev[0], formatDateReq(e.target.value)])}
+                                    />
+                                </div>
+                                <div className="cost-display">
+                                    <div>
+
+                                        <label className="modal-label">Custo período</label>
+                                        <div className="suriberto-container modal-value total-cost period-cost">
+                                            <img src="suriberto_currency.png" className="suriberto-currency" />
+                                            <p>{project.costs.totalCostPerPeriod}</p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="modal-label">Custo total</label>
+                                        <div className="suriberto-container modal-value total-cost">
+                                            <img src="suriberto_currency.png" className="suriberto-currency" />
+                                            <p>{project.costs.totalCost}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="period-cost-button"
+                                    onClick={() => {
+                                        setClicked(!clicked)
+                                        console.table({ project })
+                                    }}>Calcular</button>
                             </div>
-                            <button className="period-cost-button"
-                                onClick={() => {
-                                    setClicked(!clicked)
-                                    console.log({ costPeriod })
-                                }}>Calcular</button>
+
                         </div>
 
                         <div className="modal-employees-container">
                             <label className="modal-label">Equipe</label>
                             <div className="modal-employees-list">
-                                {project.employees.length > 0 ?
-                                    project.employees.map((e, index) =>
-                                        <p className="modal-employees">{(index + 1) + ") " + e}</p>
-                                    )
-                                    : <p className="modal-no-team">Não há equipe alocada</p>
-                                }
+                                {Object.keys(project.employees).length > 0 ? (
+                                    Object.keys(project.employees).map((employeeName: any, index) => {
+                                        const role: any = project.employees[employeeName];
+                                        return (
+                                            <div className="employee-container">
+                                                <p key={employeeName} className="modal-employees">
+                                                    {index + 1}{") "}{employeeName}
+                                                </p>
+                                                <p className={`role status ${roleClassMap[role]}`}>
+                                                    {roleMap[role]}
+                                                </p>
+                                            </div>
+                                        );
+                                    })
+                                ) : (
+                                    <p className="modal-no-team">Não há equipe alocada</p>
+                                )}
                             </div>
 
                         </div>

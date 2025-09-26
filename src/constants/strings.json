@@ -25,6 +25,10 @@
     "finished": "FINISHED",
     "createProject": "Criar projeto",
     "createContract": "Criar contrato",
+    "manager": "MANAGER",
+    "dev": "DEV",
+    "qa": "QA",
+    "security": "SECURITY",
     "createAlocation": "Criar alocação"
   }
 }
