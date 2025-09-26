@@ -47,6 +47,7 @@ export default function PostContractModal({ handler }: PostModalProps) {
       } else {
         const result = await response.json();
         console.log("Success:", result);
+        handler();
       }
     } catch (error: any) {
       console.error(error.message);
@@ -83,7 +84,7 @@ export default function PostContractModal({ handler }: PostModalProps) {
   };
 
   const handleError = () => {
-    console.log("AEEEEE");
+    console.log("Erro ao preencher formulário");
   };
 
   const validateInput = () => {
@@ -194,19 +195,19 @@ export default function PostContractModal({ handler }: PostModalProps) {
         <div className="post-modal-section">
           <label>Selecione um perfil</label>
           <div className="checkbox-container">
-            <input type="checkbox" onChange={() => handleCheckboxChange(0)} />
+            <input type="checkbox" onChange={() => handleCheckboxChange(1)} />
             <label>Gerente</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" onChange={() => handleCheckboxChange(1)} />
+            <input type="checkbox" onChange={() => handleCheckboxChange(2)} />
             <label>Desenvolvedor</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" onChange={() => handleCheckboxChange(2)} />
+            <input type="checkbox" onChange={() => handleCheckboxChange(3)} />
             <label>QA</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" onChange={() => handleCheckboxChange(3)} />
+            <input type="checkbox" onChange={() => handleCheckboxChange(4)} />
             <label>Segurança</label>
           </div>
         </div>
