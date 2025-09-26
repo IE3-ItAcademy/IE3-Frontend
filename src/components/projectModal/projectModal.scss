@@ -167,12 +167,7 @@
     font-size: 1.5rem;
 }
 
-.cost-display {
-    display: flex;
-    display: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
+
 
 .period-cost {
     align-self: end;
@@ -226,4 +221,37 @@
     background-color: #1078a530;
     padding: 0.3rem;
     color: #1078a5;
+}
+
+.display1, .display2 {
+    width: 45%;
+    height: fit-content;
+}
+
+.display2 {
+    display: flex;
+    flex-direction: column;
+}
+.display1 {
+    align-self: end;
+}
+
+.cost-display {
+    display: flex;
+    display: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cost-value {
+    font-size: 2.25rem;
+}
+
+.currency-area {
+    border: 1px solid #247BA060;
+    border-radius: 8px;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }

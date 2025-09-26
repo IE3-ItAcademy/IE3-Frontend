@@ -1,7 +1,7 @@
 import "./projectModal.scss"
 import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
-import { roleClassMap, roleMap} from "../../constants/roleMap";
+import { roleClassMap, roleMap } from "../../constants/roleMap";
 import { statusClassMap, statusMap } from "../../constants/statusMap"
 
 
@@ -44,7 +44,9 @@ export default function ProjectModal({ id }: ProjectModalProps) {
 
         if (costPeriod[1] === "" && project) {
             setCostPeriod(prev => [prev[0], formatDateReq(project?.endDate)])
+            console.log({ costPeriod })
         }
+
 
 
     }, [clicked])
@@ -52,14 +54,20 @@ export default function ProjectModal({ id }: ProjectModalProps) {
 
 
     const formatDate = (s: string) => {
+        if (!s) return "";
         const d = new Date(s);
+        if (isNaN(d.getTime())) return "";
         return `${d.getDate().toString().padStart(2, '0')} / ${(d.getMonth() + 1).toString().padStart(2, '0')} / ${d.getFullYear()}`;
     };
 
     const formatDateReq = (s: string) => {
+        if (!s) return "";
         const d = new Date(s);
+        if (isNaN(d.getTime())) return "";
         return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
     };
+
+
 
     return (
         <div className="modal-projects">
@@ -97,32 +105,31 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                                     <input
                                         className="modal-input"
                                         type="date"
-                                        value={formatDateReq(costPeriod[0])}
+                                        value={costPeriod[0]}
                                         onChange={(e) => setCostPeriod(prev => [formatDateReq(e.target.value), prev[1]])}
                                     />
                                     <label className="modal-label">Até</label>
                                     <input
                                         className="modal-input"
                                         type="date"
-                                        value={formatDateReq(costPeriod[1])}
+                                        value={costPeriod[1]}
                                         onChange={(e) => setCostPeriod(prev => [prev[0], formatDateReq(e.target.value)])}
                                     />
                                 </div>
                                 <div className="cost-display">
-                                    <div>
-
-                                        <label className="modal-label">Custo período</label>
-                                        <div className="suriberto-container modal-value total-cost period-cost">
-                                            <img src="suriberto_currency.png" className="suriberto-currency" />
-                                            <p>{project.costs.totalCostPerPeriod}</p>
+                                    <div className="display1">
+                                        <label>Custo período:</label>
+                                        <div className="currency-area">
+                                            <img className="suriberto-currency" src="suriberto_currency.png" />
+                                            <p className="cost-value">{project?.costs.totalCostPerPeriod}</p>
                                         </div>
-                                    </div>
 
-                                    <div>
-                                        <label className="modal-label">Custo total</label>
-                                        <div className="suriberto-container modal-value total-cost">
-                                            <img src="suriberto_currency.png" className="suriberto-currency" />
-                                            <p>{project.costs.totalCost}</p>
+                                    </div>
+                                    <div className="display2">
+                                        <label>Custo total:</label>
+                                        <div className="currency-area">
+                                            <img className="suriberto-currency" src="suriberto_currency.png" />
+                                            <p className="cost-value">{project?.costs.totalCost}</p>
                                         </div>
                                     </div>
                                 </div>
