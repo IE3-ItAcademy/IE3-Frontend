@@ -143,7 +143,7 @@ export default function ProjectModal({ id }: ProjectModalProps) {
                                         const role: any = project.employees[employeeName];
                                         return (
                                             <div className="project-employee-container">
-                                                <p key={employeeName} className="modal-employees">
+                                                <p key={employeeName} className="employee-teste">
                                                     {index + 1}{") "}{employeeName}
                                                 </p>
                                                 <p className={`role status ${roleClassMap[role]}`}>

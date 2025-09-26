@@ -13,6 +13,7 @@ export interface ProjectDTO {
 }
 
 interface Employee {
+    id: number;
     name: string;
-    role: string;
+    role: string[];
 }

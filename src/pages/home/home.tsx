@@ -4,12 +4,16 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import type { ProjectByStatusDTO } from "../../models/ProjectByStatusDTO";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import { statusClassMap, statusMap } from "../../constants/statusMap";
+import type { EmployeesDTO } from "../../models/EmployeesDTO";
+import type { employeeCountByRolesDTO } from "../../models/employeeCountByRolesDTO";
 
 export default function Home() {
     const [projectByStatus, setProjectByStatus] = useState<ProjectByStatusDTO>()
     const [graphData, setGraphData] = useState<any[]>([])
     const [projects, setProjects] = useState<ProjectDTO[]>([])
-    const [employees, setEmployees] = useState<any[]>([])
+    const [employees, setEmployees] = useState<EmployeesDTO[]>([])
+    const [employeeByRole, setEmployeeByRole] = useState<employeeCountByRolesDTO>()
+    const [employeeGraphData, setEmployeeGraphData] = useState<any[]>([])
 
     useEffect(() => {
         const fetchProjectsData = async () => {
@@ -44,6 +48,7 @@ export default function Home() {
 
                 const result = await response.json();
 
+                console.table(result)
                 setProjects(result)
             } catch (error: any) {
                 console.error(error.message)
@@ -54,6 +59,29 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
+        const fetchEmployeesGraphData = async () => {
+
+            try {
+                const response = await fetch("http://localhost:8080/api/employees/countByRoles");
+
+                if (!response.ok) {
+                    console.error("deu ruim")
+                }
+
+                const result = await response.json();
+
+                console.table(result)
+                setEmployeeByRole(result)
+            } catch (error: any) {
+                console.error(error.message)
+            }
+        }
+
+        fetchEmployeesGraphData()
+    }, [])
+
+    useEffect(() => {
+
         const fetchEmployeesData = async () => {
 
             try {
@@ -65,8 +93,6 @@ export default function Home() {
 
                 const result = await response.json();
 
-                console.table(result)
-
                 setEmployees(result)
             } catch (error: any) {
                 console.error(error.message)
@@ -74,11 +100,11 @@ export default function Home() {
         }
 
         fetchEmployeesData()
-    }, [])
+
+    }, [employees])
 
     useEffect(() => {
         if (projectByStatus) {
-
             const statusColors: Record<string, string> = {
                 completedProjectCount: "#0d8c29",
                 plannedProjectCount: "#f2b35c",
@@ -98,31 +124,67 @@ export default function Home() {
         }
     }, [projectByStatus]);
 
+    useEffect(() => {
+        if (employeeByRole) {
+            const statusColors: Record<string, string> = {
+                managerCount: "#f2b35c",
+                devCount: "#1078a5",
+                qaCount: "#0d8c29",
+                securityCount: "#f25f5c",
+            };
+
+            const data = [
+                { id: 0, value: employeeByRole.managerCount, label: "Manager", color: statusColors.managerCount },
+                { id: 1, value: employeeByRole.devCount, label: "Dev", color: statusColors.devCount },
+                { id: 2, value: employeeByRole.qaCount, label: "QA", color: statusColors.qaCount },
+                { id: 3, value: employeeByRole.securityCount, label: "Security", color: statusColors.securityCount },
+            ];
+            setEmployeeGraphData(data);
+        }
+    }, [projectByStatus]);
 
     return (
         <div className="home-container">
             <div className="column-left">
                 <div className="home-graph-container">
-                    <div>
                         <label className="home-title">Estatísticas</label>
-                        <p>Projetos: {projectByStatus?.totalProjectCount}</p>
+                    <div className="graphs-container">
+                        <div className="graphs">
+                            <p>Projetos: {projectByStatus?.totalProjectCount}</p>
+                            <PieChart
+                                series={[
+                                    {
+                                        data: graphData, innerRadius: 50, outerRadius: 100,
+                                    },
+                                ]}
+                                width={200}
+                                height={200}
+                            />
+                        </div>
+                        <div>
+                            <div className="graphs">
+                                <p>Funcionários ativos: {employeeByRole?.totalEmployeeCountWithActiveContracts}</p>
+
+                                <PieChart
+                                    series={[
+                                        {
+                                            data: employeeGraphData, innerRadius: 50, outerRadius: 100,
+                                        },
+                                    ]}
+                                    width={200}
+                                    height={200}
+                                />
+                            </div>
+
+                        </div>
                     </div>
-                    <PieChart
-                        series={[
-                            {
-                                data: graphData, innerRadius: 50, outerRadius: 100,
-                            },
-                        ]}
-                        width={200}
-                        height={200}
-                    />
                 </div>
                 <div className="home-projects-container">
                     <label className="home-title">Projetos</label>
                     <div className="home-projects-list">
                         {
                             projects.map((e) =>
-                                <div className="home-projects">
+                                <div key={e.id} className="home-projects">
                                     <div>
                                         {e.name}
                                     </div>
@@ -141,7 +203,7 @@ export default function Home() {
                     <div className="home-employees-list">
                         {
                             employees.map((e) =>
-                                <div className="home-employees">
+                                <div key={e.id} className="home-employees">
                                     <div>
                                         {e.name}
                                     </div>
@@ -151,7 +213,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="suriberto-home"/>
+                <div className="suriberto-home" />
             </div>
         </div>
     );
