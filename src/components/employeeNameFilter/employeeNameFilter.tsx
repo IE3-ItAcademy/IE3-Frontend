@@ -20,7 +20,7 @@ export default function EmployeeNameFilter({ list, handler }: FilterProps) {
     });
 
     handler(name ? filtered : list);
-  }, [name, list, handler]);
+  }, [name]);
 
   return (
     <div className="filter-container">
