@@ -77,7 +77,7 @@ export default function AlocationModal({ id }: AlocationModalProps) {
                 </div>
 
                 <div className="input-container">
-                  <label className="modal-label">Horas por semana</label>
+                  <label className="modal-label">Horas por semana:</label>
                   <p className="modal-value">{alocation.weeklyHours}</p>
                 </div>
               </div>

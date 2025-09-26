@@ -2,10 +2,10 @@ import "./alocations.scss";
 import { useEffect, useState } from "react";
 import { projects as stringsProjects } from "../../constants/strings.json";
 import { Modal } from "@mui/material";
-import PostContractModal from "../../components/postContractModal/postContractModal";
 import type { AlocationDTO } from "../../models/AlocationDTO";
 import NameFilter from "../../components/nameFilter/nameFilter";
 import AlocationModal from "../../components/alocationModal/alocationModal";
+import PostAlocationModal from "../../components/postAlocationModal/postAlocationModal";
 
 export default function Alocations() {
   const [alocations, setAlocations] = useState<AlocationDTO[]>([]);
@@ -13,7 +13,7 @@ export default function Alocations() {
     []
   );
   const [openAlocationModal, setOpenAlocationModal] = useState(false);
-  const [openNewContractModal, setNewContractModal] = useState(false);
+  const [openNewAlocationModal, setNewAlocationModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [alocationId, setAlocationId] = useState(1);
 
@@ -133,7 +133,7 @@ export default function Alocations() {
         className="create-alocation-button"
         role="button"
         onClick={() => {
-          setNewContractModal(true);
+          setNewAlocationModal(true);
         }}
       >
         <img src="add_circle.svg" alt="Create new alocation button" />
@@ -148,12 +148,12 @@ export default function Alocations() {
       </Modal>
 
       <Modal
-        open={openNewContractModal}
-        onClose={() => setNewContractModal(false)}
+        open={openNewAlocationModal}
+        onClose={() => setNewAlocationModal(false)}
       >
-        <PostContractModal
+        <PostAlocationModal
           handler={() => {
-            setNewContractModal(false);
+            setNewAlocationModal(false);
             fetchAlocations();
           }}
         />
