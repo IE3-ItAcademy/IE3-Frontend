@@ -88,7 +88,7 @@ export default function Alocations() {
                   <p>{i.employeeName}</p>
                 </div>
                 <div
-                  className={`employee-name employee-role role ${
+                  className={`employee-role role ${
                     roleClassMap[i.employeeRole]
                   }`}
                 >
