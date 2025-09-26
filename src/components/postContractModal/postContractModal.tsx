@@ -100,7 +100,8 @@ export default function PostContractModal({ handler }: PostModalProps) {
     if (
       weeklyHours.current === null ||
       isNaN(weeklyHours.current) ||
-      weeklyHours.current <= 0
+      weeklyHours.current <= 0 ||
+      weeklyHours.current > 40
     ) {
       console.error("Horas semanais inválidas.");
       return false;
@@ -220,7 +221,7 @@ export default function PostContractModal({ handler }: PostModalProps) {
             handler();
           }}
         >
-          Submit
+          Enviar
         </button>
       </div>
     </div>

@@ -6,7 +6,6 @@ import Contracts from "./pages/contracts/contracts";
 import Home from "./pages/home/home";
 import Alocations from "./pages/alocations/alocations";
 import Employees from "./pages/employees/employees";
-import Employees from "./pages/employees/employees";
 
 function App() {
   return (

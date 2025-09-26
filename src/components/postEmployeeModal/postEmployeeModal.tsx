@@ -71,7 +71,7 @@ export default function PostEmployeeModal({ handler }: PostModalProps) {
             handler();
           }}
         >
-          Submit
+          Enviar
         </button>
       </div>
     </div>

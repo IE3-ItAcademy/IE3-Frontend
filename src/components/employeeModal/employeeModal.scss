@@ -134,4 +134,14 @@
 
 .projects-info-container {
   display: flex;
+  justify-content: space-between;
+}
+
+.project-status {
+  align-self: center;
+}
+
+.modal-employees-list {
+  padding: .5rem;
+  gap: .5rem;
 }

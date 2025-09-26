@@ -114,7 +114,7 @@ export default function PostProjectModal({ handler }: PostModalProps) {
             handler();
           }}
         >
-          Submit
+          Enviar
         </button>
       </div>
     </div>

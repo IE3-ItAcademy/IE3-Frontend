@@ -95,7 +95,7 @@ export default function EmployeeModal({ id }: EmployeeModalProps) {
                 {employee.projectInfoList.length > 0 ? (
                   employee.projectInfoList.map((c, index) => (
                     <div className="projects-info-container" key={index}>
-                      <p className="modal-employees">{c.name} -</p>
+                      <p className="modal-employees">{c.name}</p>
                       <div className="project-status">
                         <div className={`status ${statusClassMap[c.status]}`}>
                           {statusMap[c.status]}

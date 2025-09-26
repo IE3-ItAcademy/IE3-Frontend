@@ -203,7 +203,7 @@ export default function PostAlocationModal({ handler }: PostModalProps) {
             validateInput() ? handlePost() : handleError();
           }}
         >
-          Submit
+          Enviar
         </button>
       </div>
     </div>
