@@ -58,7 +58,7 @@
 .column-left {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: fit-content;
     height: 70%;
     gap: 1rem;
     padding: 1rem;
