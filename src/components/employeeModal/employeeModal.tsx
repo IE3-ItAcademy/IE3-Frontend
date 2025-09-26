@@ -1,4 +1,4 @@
-import { statusMap } from "../../constants/statusMap";
+import { statusClassMap, statusMap } from "../../constants/statusMap";
 import type { EmployeesDTO } from "../../models/EmployeesDTO";
 import "./employeeModal.scss";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ export default function EmployeeModal({ id }: EmployeeModalProps) {
     [false, "Inativo"],
   ]);
 
-  const statusClassMap: Map<boolean, string> = new Map([
+  const contractStatusClassMap: Map<boolean, string> = new Map([
     [true, "active"],
     [false, "inactive"],
   ]);
@@ -57,7 +57,7 @@ export default function EmployeeModal({ id }: EmployeeModalProps) {
           <div className="modal-title-container">
             <p className="modal-project-title">{employee.name}</p>
             <p
-              className={`modal-status status ${statusClassMap.get(
+              className={`modal-status status ${contractStatusClassMap.get(
                 employee.activeContract
               )} `}
             >
@@ -96,7 +96,11 @@ export default function EmployeeModal({ id }: EmployeeModalProps) {
                   employee.projectInfoList.map((c, index) => (
                     <div className="projects-info-container" key={index}>
                       <p className="modal-employees">{c.name} -</p>
-                      <p className="modal-employees">{statusMap[c.status]}</p>
+                      <div className="project-status">
+                        <div className={`status ${statusClassMap[c.status]}`}>
+                          {statusMap[c.status]}
+                        </div>
+                      </div>
                     </div>
                   ))
                 ) : (
