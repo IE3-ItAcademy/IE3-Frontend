@@ -1,8 +1,8 @@
 import "./projectModal.scss"
 import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
-import { projects as stringsProjects } from "../../constants/strings.json"
 import { roleClassMap, roleMap} from "../../constants/roleMap";
+import { statusClassMap, statusMap } from "../../constants/statusMap"
 
 
 interface ProjectModalProps {
@@ -17,8 +17,6 @@ export default function ProjectModal({ id }: ProjectModalProps) {
         const fetchData = async () => {
 
             try {
-
-
                 const response = await fetch(
                     (costPeriod[0] != "" && costPeriod[1] != "")
                         ? `http://localhost:8080/api/projects/modal/${id}?startDate=${costPeriod[0]}&endDate=${costPeriod[1]}`
@@ -51,22 +49,6 @@ export default function ProjectModal({ id }: ProjectModalProps) {
 
     }, [clicked])
 
-
-    const statusClassMap: Record<string, string> = {
-        [stringsProjects.completed]: "completed",
-        [stringsProjects.planned]: "notStarted",
-        [stringsProjects.available]: "inProgress",
-        [stringsProjects.unavailable]: "invalid",
-        [stringsProjects.finished]: "finished"
-    }
-
-    const statusMap: Record<string, string> = {
-        [stringsProjects.completed]: "Concluído",
-        [stringsProjects.planned]: "Em espera",
-        [stringsProjects.available]: "Em andamento",
-        [stringsProjects.unavailable]: "Inválido",
-        [stringsProjects.finished]: "Inconcluído"
-    }
 
 
     const formatDate = (s: string) => {
@@ -153,14 +135,14 @@ export default function ProjectModal({ id }: ProjectModalProps) {
 
                         </div>
 
-                        <div className="modal-employees-container">
+                        <div className="modal-project-employees-container">
                             <label className="modal-label">Equipe</label>
                             <div className="modal-employees-list">
                                 {Object.keys(project.employees).length > 0 ? (
                                     Object.keys(project.employees).map((employeeName: any, index) => {
                                         const role: any = project.employees[employeeName];
                                         return (
-                                            <div className="employee-container">
+                                            <div className="project-employee-container">
                                                 <p key={employeeName} className="modal-employees">
                                                     {index + 1}{") "}{employeeName}
                                                 </p>

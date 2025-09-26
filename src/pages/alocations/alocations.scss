@@ -19,7 +19,7 @@
 
 .alocation {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-radius: 8px;
@@ -117,8 +117,13 @@
 }
 
 .employee-name {
-  width: 50%;
+  width: 33%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.employee-role {
+  border-radius: 8px;
+  width: 10%;
 }
