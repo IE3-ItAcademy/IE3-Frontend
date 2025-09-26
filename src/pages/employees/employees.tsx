@@ -109,16 +109,19 @@ function Employees(){
                                 <li key={idx}>
                                     {proj.name}
                                     {proj.status === "AVAILABLE" && (
-                                        <span className='status-txt' style={{ backgroundColor: '#90ee90' }}>Disponível</span>
+                                        <span className='status-txt' style={{ backgroundColor: '#1078a530', color: '#1078a5', border: '1px solid #1078a5' }}>Ativo</span>
                                     )}
                                     {proj.status === "UNAVAILABLE" && (
-                                        <span className='status-txt' style={{ backgroundColor: '#ff6b6b' }}>Indisponível</span>
+                                        <span className='status-txt' style={{ backgroundColor: '#0d8c2930', color: '#0d8c29', border: '1px solid #0d8c29' }}>Indisponível</span>
                                     )}
                                     {proj.status === "PLANNED" && (
-                                        <span className='status-txt' style={{ backgroundColor: '#ffd966' }}>Em Andamento</span>
+                                        <span className='status-txt' style={{ backgroundColor: '#f2b35c30', color: '#f2b35c', border: '1px solid #f2b35c' }}>Planejado</span>
                                     )}
                                     {proj.status === "COMPLETED" && (
-                                        <span className='status-txt' style={{ backgroundColor: '#6ec6ff' }}>Concluído</span>
+                                        <span className='status-txt' style={{ backgroundColor: '#0d8c2930', color: '#0d8c29', border: '1px solid #0d8c29' }}>Concluído</span>
+                                    )}
+                                    {proj.status === "FINISHED" && (
+                                        <span className='status-txt' style={{ backgroundColor: '#50514f30', color: '#50514f', border: '1px solid #50514f' }}>Inconcluído</span>
                                     )}
                                 </li>
                             ))}
