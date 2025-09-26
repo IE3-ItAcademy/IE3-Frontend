@@ -29,6 +29,7 @@
     "dev": "DEV",
     "qa": "QA",
     "security": "SECURITY",
-    "createAlocation": "Criar alocação"
+    "createAlocation": "Criar alocação",
+    "createEmployee": "Criar funcionário"
   }
 }

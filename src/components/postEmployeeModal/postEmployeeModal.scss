@@ -1,0 +1,67 @@
+* {
+  // outline: 1px solid red;
+}
+
+.post-modal-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #247ba030;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 1rem;
+}
+
+.post-button {
+  align-self: center;
+  width: 20%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #247ba060;
+  background-color: #247ba020;
+  font-size: 1.1rem;
+  color: #247ba0;
+}
+
+.post-modal-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-date-input {
+  width: 20%;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #247ba060;
+}
+
+.post-modal-input {
+  width: 40%;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #247ba060;
+}
+
+.post-description-input {
+  min-width: 50%;
+  max-width: 50%;
+  min-height: 5rem;
+  max-height: 5rem;
+  border-radius: 8px;
+  border: 1px solid #247ba060;
+  padding: 0.5rem;
+}
+
+.post-modal {
+  display: flex;
+  justify-self: center;
+  width: 50%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.checkbox-container {
+  display: flex;
+  gap: 1rem;
+}
