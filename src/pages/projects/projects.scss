@@ -64,6 +64,7 @@
   border-radius: 8px;
   padding: 0.3rem;
   font-weight: bold;
+  box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
 }
 
 .completed {
@@ -72,13 +73,13 @@
   color: #0d8c29;
 }
 
-.notStarted {
+.finished {
   border: 1px solid #50514f;
   background-color: #50514f30;
   color: #50514f;
 }
 
-.finished {
+.notStarted {
   border: 1px solid #f2b35c;
   background-color: #f2b35c30;
   color: #f2b35c;
@@ -107,6 +108,8 @@
   background-color: white;
   color: #1078a5;
   padding: 0.5rem;
+  font-weight: bold;
+  align-items: center;
   box-shadow: 0 3px 4px rgb(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }

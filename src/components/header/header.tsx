@@ -17,7 +17,9 @@ export default function Header() {
 
   return (
     <div className="app-header">
-      <img className="header-logo" src="logo.png" alt="Suriberto" />
+      <a role="button" href="/">
+        <img className="header-logo" src="logo.png" alt="Suriberto" />
+      </a>
       <div className="header-button-container">
         {buttons.map((e, key) => {
           return (

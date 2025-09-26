@@ -2,6 +2,7 @@ import "./projects.scss";
 import { useEffect, useState } from "react";
 import type { ProjectDTO } from "../../models/ProjectDTO";
 import Filter from "../../components/filter/filter";
+import { statusClassMap, statusMap} from "../../constants/statusMap";
 import { projects as stringsProjects } from "../../constants/strings.json"
 import { Modal } from '@mui/material';
 import ProjectModal from "../../components/projectModal/projectModal";
@@ -56,21 +57,6 @@ export default function Projects() {
         fetchProjectsData()
     }, [])
 
-    const statusClassMap: Record<string, string> = {
-        [stringsProjects.completed]: "completed",
-        [stringsProjects.planned]: "notStarted",
-        [stringsProjects.available]: "inProgress",
-        [stringsProjects.unavailable]: "invalid",
-        [stringsProjects.finished]: "finished"
-    }
-
-    const statusMap: Record<string, string> = {
-        [stringsProjects.completed]: "Concluído",
-        [stringsProjects.planned]: "Em espera",
-        [stringsProjects.available]: "Em andamento",
-        [stringsProjects.unavailable]: "Inválido",
-        [stringsProjects.finished]: "Inconcluído"
-    }
 
 
     return (

@@ -9,5 +9,10 @@ export interface ProjectDTO {
         totalCost: number;
         totalCostPerPeriod: number;
     };
-    employees: string[];
+    employees: Employee[];
+}
+
+interface Employee {
+    name: string;
+    role: string;
 }

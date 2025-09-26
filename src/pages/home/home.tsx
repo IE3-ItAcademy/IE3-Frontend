@@ -3,12 +3,14 @@ import "./home.scss"
 import { PieChart } from '@mui/x-charts/PieChart';
 import type { ProjectByStatusDTO } from "../../models/ProjectByStatusDTO";
 import type { ProjectDTO } from "../../models/ProjectDTO";
-import { projects as stringsProjects } from "../../constants/strings.json"
+import { statusClassMap, statusMap } from "../../constants/statusMap";
 
 export default function Home() {
     const [projectByStatus, setProjectByStatus] = useState<ProjectByStatusDTO>()
     const [graphData, setGraphData] = useState<any[]>([])
     const [projects, setProjects] = useState<ProjectDTO[]>([])
+    const [employees, setEmployees] = useState<any[]>([])
+
     useEffect(() => {
         const fetchProjectsData = async () => {
 
@@ -42,8 +44,6 @@ export default function Home() {
 
                 const result = await response.json();
 
-                console.table(result)
-
                 setProjects(result)
             } catch (error: any) {
                 console.error(error.message)
@@ -54,65 +54,102 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
+        const fetchEmployeesData = async () => {
+
+            try {
+                const response = await fetch("http://localhost:8080/api/employees");
+
+                if (!response.ok) {
+                    console.error("deu ruim")
+                }
+
+                const result = await response.json();
+
+                console.table(result)
+
+                setEmployees(result)
+            } catch (error: any) {
+                console.error(error.message)
+            }
+        }
+
+        fetchEmployeesData()
+    }, [])
+
+    useEffect(() => {
         if (projectByStatus) {
+
+            const statusColors: Record<string, string> = {
+                completedProjectCount: "#0d8c29",
+                plannedProjectCount: "#f2b35c",
+                availableProjectCount: "#1078a5",
+                unavailableProjectCount: "#f25f5c",
+                finishedProjectCount: "#50514f",
+            };
+
             const data = [
-                { id: 0, value: projectByStatus.completedProjectCount, label: "Concluído" },
-                { id: 1, value: projectByStatus.plannedProjectCount, label: "Em espera" },
-                { id: 2, value: projectByStatus.unavailableProjectCount, label: "Inválido" },
-                { id: 3, value: projectByStatus.availableProjectCount, label: "Em andamento" },
-                { id: 4, value: projectByStatus.finishedProjectCount, label: "Inconcluído" },
+                { id: 0, value: projectByStatus.completedProjectCount, label: "Concluído", color: statusColors.completedProjectCount },
+                { id: 1, value: projectByStatus.plannedProjectCount, label: "Planejado", color: statusColors.plannedProjectCount },
+                { id: 2, value: projectByStatus.unavailableProjectCount, label: "Inválido", color: statusColors.unavailableProjectCount },
+                { id: 3, value: projectByStatus.availableProjectCount, label: "Ativo", color: statusColors.availableProjectCount },
+                { id: 4, value: projectByStatus.finishedProjectCount, label: "Inconcluído", color: statusColors.finishedProjectCount },
             ];
             setGraphData(data);
         }
     }, [projectByStatus]);
 
-    const statusClassMap: Record<string, string> = {
-        [stringsProjects.completed]: "completed",
-        [stringsProjects.planned]: "notStarted",
-        [stringsProjects.available]: "inProgress",
-        [stringsProjects.unavailable]: "invalid",
-        [stringsProjects.finished]: "finished"
-    }
-
-    const statusMap: Record<string, string> = {
-        [stringsProjects.completed]: "Concluído",
-        [stringsProjects.planned]: "Em espera",
-        [stringsProjects.available]: "Em andamento",
-        [stringsProjects.unavailable]: "Inválido",
-        [stringsProjects.finished]: "Inconcluído"
-    }
 
     return (
         <div className="home-container">
-            <div className="home-projects-container">
-                <label className="home-title">Projetos</label>
-
-                {
-                    projects.map((e) =>
-                        <div className="home-projects">
-                            <div>
-                                {e.name}
-                            </div>
-                            <div className="project-status">
-                                <div className={`status ${statusClassMap[e.status]}`}>{statusMap[e.status]}</div>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-            <div className="home-graph-container">
-                <label className="home-title">Estatísticas</label>
-                <p>Total: {projectByStatus?.totalProjectCount}</p>
-                <PieChart
-                    series={[
+            <div className="column">
+                <div className="home-graph-container">
+                    <div>
+                        <label className="home-title">Estatísticas</label>
+                        <p>Projetos: {projectByStatus?.totalProjectCount}</p>
+                    </div>
+                    <PieChart
+                        series={[
+                            {
+                                data: graphData, innerRadius: 50, outerRadius: 100,
+                            },
+                        ]}
+                        width={200}
+                        height={200}
+                    />
+                </div>
+                <div className="home-projects-container">
+                    <label className="home-title">Projetos</label>
+                    <div className="home-projects-list">
                         {
-                            data: graphData, innerRadius: 50, outerRadius: 100,
-                        },
-                    ]}
-                    width={200}
-                    height={200}
-                />
-
+                            projects.map((e) =>
+                                <div className="home-projects">
+                                    <div>
+                                        {e.name}
+                                    </div>
+                                    <div className="project-status">
+                                        <div className={`status ${statusClassMap[e.status]}`}>{statusMap[e.status]}</div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className="column">
+                <div className="home-employees-container">
+                    <label className="home-title">Funcionários</label>
+                    <div className="home-employees-list">
+                        {
+                            employees.map((e) =>
+                                <div className="home-employees">
+                                    <div>
+                                        {e.name}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );

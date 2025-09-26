@@ -36,6 +36,12 @@
     width: 100%;
 }
 
+.modal-date-section {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
 .modal-project-description {
     min-height: 5rem;
 }
@@ -57,22 +63,31 @@
 
 .modal-section {
     display: flex;
-
+    flex-direction: row;
     margin: 1rem 0;
 }
 
+.modal-costs-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .modal-value {
-    margin: 0 1rem;
-    background-color: white;
     border: 1px solid #247BA060;
-    padding: .5rem;
-    width: fit-content;
     border-radius: 8px;
+    padding: 1rem;
+}
+
+.total-cost {
+    font-weight: bold;
 }
 
 .modal-period {
-    display: flex;
-    flex-direction: column;
+    margin-right: 1rem;
+    width: 100%;
+    gap: .5rem;
+    margin-top: 1rem;
 }
 
 .period-inputs {
@@ -87,7 +102,11 @@
 }
 
 .modal-employees-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
     padding: 1rem 0;
+
 }
 
 .modal-employees-list {
@@ -105,12 +124,10 @@
     scrollbar-width: none;
 }
 
-.modal-employees-list .modal-employees:nth-child(odd){
-    background-color: #247BA015;
-}
 
 .modal-employees {
     padding: .5rem;
+    display: flex;
 }
 
 .modal-no-team {
@@ -126,12 +143,84 @@
     background-color: #247BA020;
     color: #247BA0;
     padding: .5rem;
+    align-self: center;
 }
 
 .period-cost-button:active {
     scale: .9;
 }
 
-.suribertos-modal {
-    margin-left: 1rem;
+.period-cost-display {
+    display: flex;
+    align-items: center;
+}
+
+.suriberto-currency {
+    width: 5rem;
+}
+
+.suriberto-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.cost-display {
+    display: flex;
+    display: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.period-cost {
+    align-self: end;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.employee-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .5rem;
+}
+
+.modal-employees-container .employee-container:nth-child(odd) {
+    background-color: #247ba015;
+}
+
+.role {
+    text-align: center;
+    width: 15%;
+}
+
+.manager {
+    padding: .5rem;
+    border: 1px solid #f2b35c;
+    background-color: #f2b35c30;
+    color: #f2b35c;
+}
+
+.security {
+    border: 1px solid #f25f5c;
+    background-color: #f25f5c30;
+    color: #f25f5c;
+}
+
+.qa {
+    border: 1px solid #0d8c29;
+    background-color: #0d8c2930;
+    color: #0d8c29;
+}
+
+.dev {
+    border: 1px solid #1078a5;
+    background-color: #1078a530;
+    padding: 0.3rem;
+    color: #1078a5;
 }
